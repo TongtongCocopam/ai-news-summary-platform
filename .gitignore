@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# 환경 설정
+.env
+
+# 가상환경
+venv/
