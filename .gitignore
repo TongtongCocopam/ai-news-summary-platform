@@ -7,3 +7,6 @@ backend/.env
 
 # 가상환경
 venv/
+
+# DB 데이터 폴더
+mysql_data/
