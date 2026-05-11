@@ -5,6 +5,7 @@ AI를 활용하여 뉴스 범람 시대의 정보 과부하를 해결하고,
 
 ## Tech Stack
 - **Backend**: FastAPI (Python 3.10+)
+- **Frontend**: React
 - **Database**: MySQL 8.0
 - **ORM**: SQLAlchemy
 - **AI**: GPT-4o, LangChain (RAG)
