@@ -45,6 +45,11 @@ class ErrorCode(Enum):
         "이슈를 찾을 수 없습니다.",
     )
 
+    ARTICLE_NOT_FOUND = (
+        HTTPStatus.NOT_FOUND,
+        "ARTICLE_NOT_FOUND",
+        "기사를 찾을 수 없습니다.",
+    )
 
     def __init__(
         self,
