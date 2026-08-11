@@ -1,6 +1,6 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from backend.app.core.config import settings
+from backend.app.core import settings
 
 def setup_cors(app: FastAPI) -> None:
     # 환경변수에서 쉼표로 구분된 문자열을 리스트로 변환
