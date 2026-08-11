@@ -116,7 +116,7 @@ class ArticleService:
                         else None
                     ),
                     author=article.author,
-                    image_url=article.image_url,
+                    # image_url=article.image_url,
                     outlet=source.name if source else None,
                     url=article.url,
                     published_at=article.published_at,
@@ -186,7 +186,7 @@ class ArticleService:
                 else None
             ),
             author=article.author,
-            image_url=article.image_url,
+            # image_url=article.image_url,
             outlet=source.name if source else None,
             url=article.url,
             published_at=article.published_at,
@@ -247,7 +247,7 @@ class ArticleService:
                         else None
                     ),
                     author=article.author,
-                    image_url=article.image_url,
+                    # image_url=article.image_url,
                     outlet=source.name if source else None,
                     url=article.url,
                     published_at=article.published_at,
@@ -305,7 +305,7 @@ class ArticleService:
                         else None
                     ),
                     author=article.author,
-                    image_url=article.image_url,
+                    # image_url=article.image_url,
                     outlet=source.name if source else None,
                     url=article.url,
                     published_at=article.published_at,
