@@ -222,3 +222,39 @@ class ArticleRepository:
         result = await self.session.execute(statement)
 
         return result.all()
+
+
+    async def find_ids_by_category(
+            self,
+            category_id: int,
+            subcategory_id: int | None,
+            offset: int,
+            limit: int,
+    ) -> list[int]:
+
+        statement = (
+            select(Article.id)
+            .where(
+                col(Article.category_id) == category_id
+            )
+        )
+
+        if subcategory_id is not None:
+            statement = statement.where(
+                col(Article.subcategory_id) == subcategory_id
+            )
+
+        statement = (
+            statement
+            .order_by(
+                col(Article.published_at).desc()
+            )
+            .offset(offset)
+            .limit(limit)
+        )
+
+        result = await self.session.execute(statement)
+
+        return list(
+            result.scalars().all()
+        )
