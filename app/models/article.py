@@ -27,6 +27,13 @@ class Article(SQLModel, table=True):
         index=True,
     )
 
+    content: str = Field(
+        sa_column=Column(
+            Text,
+            nullable=False,
+        )
+    )
+
     url: str = Field(
         sa_column=Column(Text, nullable=False)
     )
@@ -38,10 +45,10 @@ class Article(SQLModel, table=True):
         max_length=255,
     )
 
-    image_url: str | None = Field(
-        default=None,
-        max_length=1000,
-    )
+    # image_url: str | None = Field(
+    #     default=None,
+    #     max_length=1000,
+    # )
 
     is_correction: bool = Field(
         default=False,
