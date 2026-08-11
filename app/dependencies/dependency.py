@@ -4,6 +4,7 @@ from fastapi import Depends
 from app.db.session import SessionDep
 from app.services.auth_service import AuthService
 from app.services.user_service import UserService
+from app.services.trend_service import TrendService
 
 
 def get_auth_service(
@@ -26,4 +27,15 @@ def get_user_service(
 UserServiceDep = Annotated[
     UserService,
     Depends(get_user_service),
+]
+
+def get_trend_service(
+    session: SessionDep,
+) -> TrendService:
+    return TrendService(session)
+
+
+TrendServiceDep = Annotated[
+    TrendService,
+    Depends(get_trend_service),
 ]
