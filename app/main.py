@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api import auth, users
+from app.router import auth, users
 from app.core.cors import setup_cors
 from app.exceptions.handlers import register_exception_handlers
 
