@@ -39,6 +39,13 @@ class ErrorCode(Enum):
         "서버 내부 오류가 발생했습니다.",
     )
 
+    ISSUE_NOT_FOUND = (
+        HTTPStatus.NOT_FOUND,
+        "NOT_FOUND",
+        "이슈를 찾을 수 없습니다.",
+    )
+
+
     def __init__(
         self,
         status: HTTPStatus,
