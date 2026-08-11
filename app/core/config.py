@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     MYSQL_PORT: int = 3306
     MYSQL_DATABASE: str
 
+    JWT_SECRET_KEY: str
+    JWT_ALGORITHM: str = "HS256"
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+
     cors_origins: CommaSeparatedList = []
 
     model_config = SettingsConfigDict(
