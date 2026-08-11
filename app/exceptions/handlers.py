@@ -63,9 +63,6 @@ def register_exception_handlers(app: FastAPI) -> None:
             content=jsonable_encoder(response),
         )
 
-    @app.exception_handler(
-        (OperationalError, TimeoutError)
-    )
     async def database_exception_handler(
         request: Request,
         exc: Exception,
@@ -83,6 +80,16 @@ def register_exception_handlers(app: FastAPI) -> None:
             status_code=error.status.value,
             content=jsonable_encoder(response),
         )
+
+    app.add_exception_handler(
+        OperationalError,
+        database_exception_handler,
+    )
+
+    app.add_exception_handler(
+        TimeoutError,
+        database_exception_handler,
+    )
 
     @app.exception_handler(StarletteHTTPException)
     async def http_exception_handler(
