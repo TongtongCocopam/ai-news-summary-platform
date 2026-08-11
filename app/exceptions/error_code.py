@@ -51,6 +51,18 @@ class ErrorCode(Enum):
         "기사를 찾을 수 없습니다.",
     )
 
+    CATEGORY_NOT_FOUND = (
+        HTTPStatus.NOT_FOUND,
+        "CATEGORY_NOT_FOUND",
+        "카테고리를 찾을 수 없습니다.",
+    )
+
+    SUBCATEGORY_NOT_FOUND = (
+        HTTPStatus.NOT_FOUND,
+        "SUBCATEGORY_NOT_FOUND",
+        "해당 카테고리에 속한 서브카테고리를 찾을 수 없습니다.",
+    )
+
     def __init__(
         self,
         status: HTTPStatus,
