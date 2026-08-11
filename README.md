@@ -26,5 +26,8 @@ AI를 활용하여 뉴스 범람 시대의 정보 과부하를 해결하고,
    ```bash
    pip install -r requirements.txt
    
-2. 서버 실행
+2. .env.example참고
+    db비밀번호, 이름, 링크 등 변수 넣어야 함
+
+3. 서버 실행
 uvicorn main:app --reload
