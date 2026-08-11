@@ -1,4 +1,5 @@
 from sqlmodel import Field, Relationship, SQLModel
+from sqlalchemy import UniqueConstraint
 
 
 class Category(SQLModel, table=True):
@@ -22,6 +23,14 @@ class Category(SQLModel, table=True):
 class Subcategory(SQLModel, table=True):
     __tablename__ = "subcategories"
 
+    __table_args__ = (
+        UniqueConstraint(
+            "category_id",
+            "code",
+            name="uq_subcategory_category_code",
+        ),
+    )
+
     id: int | None = Field(default=None, primary_key=True)
 
     category_id: int = Field(
@@ -30,7 +39,6 @@ class Subcategory(SQLModel, table=True):
     )
 
     code: str = Field(
-        unique=True,
         index=True,
         max_length=64,
     )

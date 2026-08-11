@@ -63,3 +63,67 @@ class CategoryRepository:
         result = await self.session.execute(statement)
 
         return result.scalar_one_or_none()
+
+    async def find_by_codes(
+            self,
+            codes: set[str],
+    ) -> list[Category]:
+
+        if not codes:
+            return []
+
+        statement = (
+            select(Category)
+            .where(
+                col(Category.code).in_(codes)
+            )
+        )
+
+        result = await self.session.execute(
+            statement
+        )
+
+        return list(
+            result.scalars().all()
+        )
+
+    async def find_subcategories(
+            self,
+            category_ids: set[int],
+            codes: set[str],
+    ) -> list[Subcategory]:
+
+        if not category_ids or not codes:
+            return []
+
+        statement = (
+            select(Subcategory)
+            .where(
+                col(Subcategory.category_id).in_(
+                    category_ids
+                ),
+                col(Subcategory.code).in_(
+                    codes
+                ),
+            )
+        )
+
+        result = await self.session.execute(
+            statement
+        )
+
+        return list(
+            result.scalars().all()
+        )
+
+    def add_categories(
+            self,
+            categories: list[Category],
+    ) -> None:
+        self.session.add_all(categories)
+
+    def add_subcategories(
+            self,
+            subcategories: list[Subcategory],
+    ) -> None:
+        self.session.add_all(subcategories)

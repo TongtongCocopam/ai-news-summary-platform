@@ -258,3 +258,32 @@ class ArticleRepository:
         return list(
             result.scalars().all()
         )
+
+    async def find_existing_urls(
+            self,
+            urls: set[str],
+    ) -> set[str]:
+
+        if not urls:
+            return set()
+
+        statement = (
+            select(Article.url)
+            .where(
+                col(Article.url).in_(urls)
+            )
+        )
+
+        result = await self.session.execute(
+            statement
+        )
+
+        return set(
+            result.scalars().all()
+        )
+
+    def add_all(
+            self,
+            articles: list[Article],
+    ) -> None:
+        self.session.add_all(articles)
