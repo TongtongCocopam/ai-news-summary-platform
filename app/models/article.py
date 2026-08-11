@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Text
+from sqlalchemy import Column, Text, JSON
 from sqlmodel import Field, SQLModel
 
 
@@ -76,6 +76,20 @@ class ArticleSummary(SQLModel, table=True):
 
     summary_text: str = Field(
         sa_column=Column(Text, nullable=False)
+    )
+
+    keywords: list[str] | None = Field(
+        default=None,
+        sa_column=Column(JSON, nullable=True),
+    )
+
+    entities: dict | list | None = Field(
+        default=None,
+        sa_column=Column(JSON, nullable=True),
+    )
+
+    topic_processed_at: datetime | None = Field(
+        default=None,
     )
 
 
