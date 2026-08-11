@@ -1,9 +1,8 @@
 from fastapi import APIRouter, status
 
 from app.common.response import ApiResponse
-from app.db.session import SessionDep
+from app.dependencies.dependency import AuthServiceDep
 from app.schemas.auth import UserSignupRequest, UserSignupResponse
-from app.services.auth_service import AuthService
 
 
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -13,10 +12,9 @@ router = APIRouter(prefix="/auth", tags=["auth"])
              status_code=status.HTTP_201_CREATED,
              response_model=ApiResponse[UserSignupResponse])
 async def signup(request: UserSignupRequest,
-                 session:SessionDep):
-    service = AuthService(session)
+                 auth_service:AuthServiceDep):
 
-    result = await service.signup(request)
+    result = await auth_service.signup(request)
 
     return ApiResponse(
         success=True,

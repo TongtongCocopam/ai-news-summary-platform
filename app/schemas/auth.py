@@ -10,3 +10,13 @@ class UserSignupRequest(SQLModel):
 
 class UserSignupResponse(SQLModel):
     nickname: str
+
+
+class UserLoginRequest(SQLModel):
+    email: str
+    password: str
+
+
+class UserLoginResponse(SQLModel):
+    access_token: str
+    token_type: str = "bearer"

@@ -14,20 +14,20 @@ class AuthService:
         self.user_repository = UserRepository(session)
 
     async def signup(self, request: UserSignupRequest) -> UserSignupResponse:
-        existing_user = await self.user_repository.find_by_email(
-            request.email
-        )
-
-        if existing_user:
-            raise AppException(ErrorCode.USER_ALREADY_EXISTS, request.email)
-
-        user = User(
-            email=request.email,
-            password_hash=hash_password(request.password),
-            nickname=request.nickname,
-        )
-
         async with self.session.begin():
+            existing_user = await self.user_repository.find_by_email(
+                request.email
+            )
+
+            if existing_user is not None:
+                raise AppException(ErrorCode.USER_ALREADY_EXISTS, request.email)
+
+            user = User(
+                email=request.email,
+                password_hash=hash_password(request.password),
+                nickname=request.nickname,
+            )
+
             await self.user_repository.save(user)
 
         return UserSignupResponse(
