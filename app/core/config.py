@@ -1,4 +1,20 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import Annotated, Any
+
+from pydantic import BeforeValidator
+from pydantic_settings import (
+    BaseSettings,
+    NoDecode,
+    SettingsConfigDict,
+)
+
+
+def split_comma(value: Any) -> Any:
+    if isinstance(value, str):
+        return [item.strip() for item in value.split(",")]
+    return value
+
+
+CommaSeparatedList = Annotated[list[str], NoDecode, BeforeValidator(split_comma),]
 
 
 class Settings(BaseSettings):
@@ -8,8 +24,11 @@ class Settings(BaseSettings):
     MYSQL_PORT: int = 3306
     MYSQL_DATABASE: str
 
+    cors_origins: CommaSeparatedList = []
+
     model_config = SettingsConfigDict(
         env_file=".env",
+        env_file_encoding="utf-8",
         extra="ignore",
     )
 
