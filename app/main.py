@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.router import auth, users, trends, issues
+from app.router import auth, users, trends, issues, articles
 from app.core.cors import setup_cors
 from app.exceptions.handlers import register_exception_handlers
 
@@ -14,6 +14,7 @@ def create_app() -> FastAPI:
     app.include_router(users.router)
     app.include_router(trends.router)
     app.include_router(issues.router)
+    app.include_router(articles.router)
     return app
 
 

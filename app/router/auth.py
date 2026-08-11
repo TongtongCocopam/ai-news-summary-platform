@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
 
 from app.common.response import ApiResponse
-from app.dependencies.dependency import AuthServiceDep
+from app.dependencies.services import AuthServiceDep
 from app.schemas.auth import UserLoginResponse, UserLoginRequest
 from app.schemas.auth import UserSignupRequest, UserSignupResponse
 

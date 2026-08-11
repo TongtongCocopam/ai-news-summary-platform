@@ -2,7 +2,7 @@ from fastapi import APIRouter, Query
 
 from app.common.response import ApiResponse
 from app.schemas.trend import TrendItemResponse
-from app.dependencies.dependency import TrendServiceDep
+from app.dependencies.services import TrendServiceDep
 
 
 router = APIRouter(

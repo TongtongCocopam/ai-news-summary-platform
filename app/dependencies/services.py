@@ -6,6 +6,7 @@ from app.services.auth_service import AuthService
 from app.services.user_service import UserService
 from app.services.trend_service import TrendService
 from app.services.issue_service import IssueService
+from app.services.article_service import ArticleService
 
 
 def get_auth_service(
@@ -50,4 +51,15 @@ def get_issue_service(
 IssueServiceDep = Annotated[
     IssueService,
     Depends(get_issue_service),
+]
+
+def get_article_service(
+    session: SessionDep,
+) -> ArticleService:
+    return ArticleService(session)
+
+
+ArticleServiceDep = Annotated[
+    ArticleService,
+    Depends(get_article_service),
 ]
