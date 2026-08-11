@@ -11,7 +11,7 @@ class ArticleItemResponse(SQLModel):
     original_title: str
     summary: str | None
     author: str | None
-    image_url: str | None
+    # image_url: str | None
     outlet: str | None
     url: str
     published_at: datetime | None

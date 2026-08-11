@@ -153,7 +153,7 @@ class CategoryService:
                         else None
                     ),
                     author=article.author,
-                    image_url=article.image_url,
+                    # image_url=article.image_url,
                     outlet=(
                         source.name
                         if source
